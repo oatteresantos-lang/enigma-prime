@@ -20,17 +20,23 @@ jobs:
 
       - name: Installer les dépendances
         run: |
-          pip install google-api-python-client youtube-transcript-api
+          pip install google-api-python-client youtube-transcript-api isodate
 
-      - name: Lancer le script de détection
+      - name: Lancer le script de détection (Brique 1)
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
         run: |
           python detect_viral_patterns.py
 
-      - name: Sauvegarder le résultat (JSON) comme artifact téléchargeable
+      - name: Lancer l'extraction de patterns (Brique 2)
+        run: |
+          python extract_patterns.py
+
+      - name: Sauvegarder les résultats comme artifacts téléchargeables
         uses: actions/upload-artifact@v4
         with:
-          name: viral-horror-data-${{ github.run_number }}
-          path: viral_horror_data.json
+          name: enigma-prime-data-${{ github.run_number }}
+          path: |
+            viral_horror_data.json
+            patterns_brief.json
           retention-days: 30
