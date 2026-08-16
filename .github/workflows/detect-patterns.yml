@@ -34,11 +34,3 @@ jobs:
           name: viral-horror-data-${{ github.run_number }}
           path: viral_horror_data.json
           retention-days: 30
-
-      - name: Commit du résultat dans le repo (optionnel)
-        run: |
-          git config user.name "enigma-prime-bot"
-          git config user.email "bot@enigma-prime.local"
-          git add viral_horror_data.json
-          git commit -m "Mise à jour données patterns viraux - $(date +'%Y-%m-%d')" || echo "Rien à commit"
-          git push
