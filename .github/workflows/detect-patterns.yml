@@ -20,7 +20,7 @@ jobs:
 
       - name: Installer les dépendances
         run: |
-          pip install google-api-python-client youtube-transcript-api isodate groq requests
+          pip install google-api-python-client youtube-transcript-api isodate groq requests edge-tts mutagen
 
       - name: Lancer le script de détection (Brique 1)
         env:
@@ -44,6 +44,10 @@ jobs:
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
         run: |
           python fetch_pexels_clips.py
+
+      - name: Générer la voix off (Brique 5)
+        run: |
+          python generate_voiceover.py
 
       - name: Sauvegarder les résultats comme artifacts téléchargeables
         uses: actions/upload-artifact@v4
