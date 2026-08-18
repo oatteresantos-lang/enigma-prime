@@ -38,7 +38,7 @@ from groq import Groq
 GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "COLLE_TA_CLE_API_ICI")
 
 # Modèle Groq utilisé (rapide et gratuit, bon niveau en français)
-MODEL = "llama-3.3-70b-versatile"
+MODEL = "openai/gpt-oss-120b"  # llama-3.3-70b-versatile déprécié par Groq depuis juin 2026
 
 # Nombre d'histoires à générer à chaque exécution
 NB_HISTOIRES = 5
