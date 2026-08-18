@@ -49,6 +49,10 @@ jobs:
         run: |
           python generate_voiceover.py
 
+      - name: Monter la vidéo finale (Brique 6)
+        run: |
+          python generate_video.py
+
       - name: Sauvegarder les résultats comme artifacts téléchargeables
         uses: actions/upload-artifact@v4
         with:
