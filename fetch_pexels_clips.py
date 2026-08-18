@@ -39,7 +39,7 @@ from groq import Groq
 PEXELS_API_KEY = os.environ.get("PEXELS_API_KEY", "COLLE_TA_CLE_API_ICI")
 GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "COLLE_TA_CLE_API_ICI")
 
-MODEL = "llama-3.3-70b-versatile"
+MODEL = "openai/gpt-oss-120b"  # llama-3.3-70b-versatile déprécié par Groq depuis juin 2026
 
 SCRIPTS_FILE = "scripts_generes.json"
 OUTPUT_DIR = "clips"
