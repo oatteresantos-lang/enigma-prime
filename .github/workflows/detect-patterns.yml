@@ -20,7 +20,7 @@ jobs:
 
       - name: Installer les dépendances
         run: |
-          pip install google-api-python-client youtube-transcript-api isodate groq requests edge-tts mutagen
+          pip install google-api-python-client youtube-transcript-api isodate groq requests edge-tts mutagen google-auth google-auth-oauthlib
 
       - name: Lancer le script de détection (Brique 1)
         env:
@@ -52,6 +52,14 @@ jobs:
       - name: Monter la vidéo finale (Brique 6)
         run: |
           python generate_video.py
+
+      - name: Uploader sur YouTube (Brique 7)
+        env:
+          YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
+          YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
+        run: |
+          python upload_youtube.py
 
       - name: Sauvegarder les résultats comme artifacts téléchargeables
         uses: actions/upload-artifact@v4
