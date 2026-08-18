@@ -20,7 +20,7 @@ jobs:
 
       - name: Installer les dépendances
         run: |
-          pip install google-api-python-client youtube-transcript-api isodate groq
+          pip install google-api-python-client youtube-transcript-api isodate groq requests
 
       - name: Lancer le script de détection (Brique 1)
         env:
@@ -38,6 +38,13 @@ jobs:
         run: |
           python generate_scripts.py
 
+      - name: Récupérer les clips vidéo Pexels (Brique 4)
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+        run: |
+          python fetch_pexels_clips.py
+
       - name: Sauvegarder les résultats comme artifacts téléchargeables
         uses: actions/upload-artifact@v4
         with:
@@ -46,4 +53,6 @@ jobs:
             viral_horror_data.json
             patterns_brief.json
             scripts_generes.json
+            clips_manifest.json
+            clips/
           retention-days: 30
