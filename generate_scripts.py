@@ -41,7 +41,7 @@ GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "COLLE_TA_CLE_API_ICI")
 MODEL = "openai/gpt-oss-120b"  # modèle reasoning ; kimi-k2 indisponible sur ce compte (404)
 
 # Nombre d'histoires à générer à chaque exécution
-NB_HISTOIRES = 5
+NB_HISTOIRES = 3
 
 # Longueur cible pour un Short (en mots) - pour un short de ~45-60 secondes
 LONGUEUR_CIBLE_MOTS = "180 à 260"
