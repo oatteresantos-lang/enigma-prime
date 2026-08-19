@@ -39,7 +39,7 @@ from groq import Groq
 PEXELS_API_KEY = os.environ.get("PEXELS_API_KEY", "COLLE_TA_CLE_API_ICI")
 GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "COLLE_TA_CLE_API_ICI")
 
-MODEL = "moonshotai/kimi-k2-instruct-0905"  # non-reasoning, plus fiable que gpt-oss-120b qui vide parfois "content"
+MODEL = "moonshotai/kimi-k2-instruct"  # non-reasoning, plus fiable que gpt-oss-120b qui vide parfois "content"
 
 SCRIPTS_FILE = "scripts_generes.json"
 OUTPUT_DIR = "clips"
