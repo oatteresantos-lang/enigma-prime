@@ -39,7 +39,7 @@ from groq import Groq
 PEXELS_API_KEY = os.environ.get("PEXELS_API_KEY", "COLLE_TA_CLE_API_ICI")
 GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "COLLE_TA_CLE_API_ICI")
 
-MODEL = "openai/gpt-oss-120b"  # llama-3.3-70b-versatile déprécié par Groq depuis juin 2026
+MODEL = "moonshotai/kimi-k2-instruct-0905"  # non-reasoning, plus fiable que gpt-oss-120b qui vide parfois "content"
 
 SCRIPTS_FILE = "scripts_generes.json"
 OUTPUT_DIR = "clips"
@@ -67,7 +67,6 @@ Propose 3 mots-clés ou courtes expressions en ANGLAIS décrivant des images ou 
         messages=[{"role": "user", "content": prompt}],
         temperature=0.7,
         max_tokens=200,
-        reasoning_effort="low",
     )
     raw = (response.choices[0].message.content or "").strip()
     keywords = [k.strip() for k in raw.split(",") if k.strip()]
