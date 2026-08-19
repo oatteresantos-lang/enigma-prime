@@ -113,9 +113,8 @@ def generate_story(client, brief):
         max_completion_tokens=1500,
     )
     content = response.choices[0].message.content
-    if not content:
-        finish_reason = response.choices[0].finish_reason
-        print(f"      🔍 DEBUG contenu vide — finish_reason={finish_reason}, réponse brute: {response.choices[0].message}")
+    finish_reason = response.choices[0].finish_reason
+    print(f"      🔍 DEBUG raw content={content!r}, finish_reason={finish_reason}, usage={response.usage}")
     return (content or "").strip()
 
 
