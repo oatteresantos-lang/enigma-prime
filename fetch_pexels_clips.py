@@ -66,7 +66,7 @@ Propose 3 mots-clés ou courtes expressions en ANGLAIS décrivant des images ou 
         model=MODEL,
         messages=[{"role": "user", "content": prompt}],
         temperature=0.7,
-        max_tokens=200,
+        max_completion_tokens=200,
     )
     raw = (response.choices[0].message.content or "").strip()
     keywords = [k.strip() for k in raw.split(",") if k.strip()]
