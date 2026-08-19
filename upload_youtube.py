@@ -42,7 +42,7 @@ SCOPES = ["https://www.googleapis.com/auth/youtube.upload"]
 
 # Visibilité par défaut des vidéos uploadées.
 # "private" pour tester sans publier publiquement, "public" une fois validé.
-PRIVACY_STATUS = "private"
+PRIVACY_STATUS = "public"
 
 # Catégorie YouTube "Entertainment" (voir la liste des IDs via l'API si besoin)
 CATEGORY_ID = "24"
