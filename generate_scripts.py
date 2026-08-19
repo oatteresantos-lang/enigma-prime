@@ -114,10 +114,7 @@ def generate_story(client, brief):
         max_completion_tokens=1500,
         reasoning_effort="low",
     )
-    content = response.choices[0].message.content
-    finish_reason = response.choices[0].finish_reason
-    print(f"      🔍 DEBUG raw content={content!r}, finish_reason={finish_reason}, usage={response.usage}")
-    return (content or "").strip()
+    return (response.choices[0].message.content or "").strip()
 
 
 def run():
