@@ -38,7 +38,7 @@ from groq import Groq
 GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "COLLE_TA_CLE_API_ICI")
 
 # Modèle Groq utilisé (rapide et gratuit, bon niveau en français)
-MODEL = "openai/gpt-oss-120b"  # llama-3.3-70b-versatile déprécié par Groq depuis juin 2026
+MODEL = "moonshotai/kimi-k2-instruct-0905"  # non-reasoning, plus fiable que gpt-oss-120b qui vide parfois "content"
 
 # Nombre d'histoires à générer à chaque exécution
 NB_HISTOIRES = 5
@@ -97,7 +97,6 @@ Propose UN SEUL titre YouTube Shorts accrocheur pour cette histoire, en françai
         messages=[{"role": "user", "content": prompt}],
         temperature=0.9,
         max_tokens=300,
-        reasoning_effort="low",
     )
     title = (response.choices[0].message.content or "").strip()
     # Nettoie d'éventuels guillemets ajoutés par le modèle
@@ -112,7 +111,6 @@ def generate_story(client, brief):
         messages=[{"role": "user", "content": prompt}],
         temperature=1.0,
         max_tokens=1500,
-        reasoning_effort="low",
     )
     return (response.choices[0].message.content or "").strip()
 
