@@ -96,7 +96,7 @@ Propose UN SEUL titre YouTube Shorts accrocheur pour cette histoire, en françai
         model=MODEL,
         messages=[{"role": "user", "content": prompt}],
         temperature=0.9,
-        max_tokens=300,
+        max_completion_tokens=300,
     )
     title = (response.choices[0].message.content or "").strip()
     # Nettoie d'éventuels guillemets ajoutés par le modèle
@@ -110,7 +110,7 @@ def generate_story(client, brief):
         model=MODEL,
         messages=[{"role": "user", "content": prompt}],
         temperature=1.0,
-        max_tokens=1500,
+        max_completion_tokens=1500,
     )
     return (response.choices[0].message.content or "").strip()
 
