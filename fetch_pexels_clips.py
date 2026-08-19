@@ -60,7 +60,14 @@ def extract_keywords(client, story_text):
 
 {story_text}
 
-Propose 3 mots-clés ou courtes expressions en ANGLAIS décrivant des images ou ambiances visuelles (lieux, objets, atmosphères sombres) qui correspondraient bien à cette histoire pour illustrer une vidéo avec des clips de stock footage. Réponds uniquement avec les 3 mots-clés séparés par des virgules, rien d'autre. Exemple de format : dark forest night, abandoned house, foggy street"""
+Propose 3 mots-clés ou courtes expressions en ANGLAIS décrivant des images ou ambiances visuelles pour illustrer cette vidéo avec des clips de stock footage.
+
+Contraintes fortes pour chaque mot-clé :
+- Privilégie systématiquement des scènes SOMBRES, en pénombre, la nuit, ou avec un éclairage faible/vacillant (dark, dim, night, flickering light, shadow, abandoned, decayed, eerie, empty corridor, fog).
+- Évite les lieux ou ambiances lumineux, chaleureux, neutres ou "carte postale" — ce ne sont pas des mots-clés utilisables même s'ils correspondent littéralement au décor de l'histoire.
+- Reste concret et cherchable sur une banque de vidéos (un lieu ou objet visible), pas un concept abstrait.
+
+Réponds uniquement avec les 3 mots-clés séparés par des virgules, rien d'autre. Exemple de format : dark abandoned corridor at night, flickering light empty room, foggy street shadows"""
 
     response = client.chat.completions.create(
         model=MODEL,
@@ -71,7 +78,7 @@ Propose 3 mots-clés ou courtes expressions en ANGLAIS décrivant des images ou 
     )
     raw = (response.choices[0].message.content or "").strip()
     keywords = [k.strip() for k in raw.split(",") if k.strip()]
-    return keywords[:3] if keywords else ["dark atmosphere horror"]
+    return keywords[:3] if keywords else ["dark abandoned corridor night eerie"]
 
 
 def search_pexels(keyword, per_page=5):
