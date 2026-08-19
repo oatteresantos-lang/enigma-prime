@@ -112,7 +112,11 @@ def generate_story(client, brief):
         temperature=1.0,
         max_completion_tokens=1500,
     )
-    return (response.choices[0].message.content or "").strip()
+    content = response.choices[0].message.content
+    if not content:
+        finish_reason = response.choices[0].finish_reason
+        print(f"      🔍 DEBUG contenu vide — finish_reason={finish_reason}, réponse brute: {response.choices[0].message}")
+    return (content or "").strip()
 
 
 def run():
