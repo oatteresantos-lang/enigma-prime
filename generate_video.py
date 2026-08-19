@@ -130,10 +130,18 @@ def build_video(clips, voiceover_path, srt_path, output_path, target_duration):
         "-i", concat_list_path, "-c", "copy", tmp_concat,
     ])
 
-    # 2. Redimensionner/recadrer en 1080x1920 et couper à la durée cible
+    # 2. Redimensionner/recadrer en 1080x1920, couper à la durée cible,
+    #    et appliquer un étalonnage "horreur" (plus sombre, désaturé, contraste,
+    #    vignette) pour donner une ambiance cohérente même sur des rushs neutres
+    color_grade = (
+        "eq=brightness=-0.08:contrast=1.25:saturation=0.55,"
+        "curves=master='0/0 0.5/0.4 1/0.85',"
+        "vignette=PI/4"
+    )
     scale_filter = (
         f"scale={TARGET_WIDTH}:{TARGET_HEIGHT}:force_original_aspect_ratio=increase,"
-        f"crop={TARGET_WIDTH}:{TARGET_HEIGHT}"
+        f"crop={TARGET_WIDTH}:{TARGET_HEIGHT},"
+        f"{color_grade}"
     )
     run_ffmpeg([
         "ffmpeg", "-y", "-i", tmp_concat,
