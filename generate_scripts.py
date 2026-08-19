@@ -38,7 +38,7 @@ from groq import Groq
 GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "COLLE_TA_CLE_API_ICI")
 
 # Modèle Groq utilisé (rapide et gratuit, bon niveau en français)
-MODEL = "moonshotai/kimi-k2-instruct-0905"  # non-reasoning, plus fiable que gpt-oss-120b qui vide parfois "content"
+MODEL = "moonshotai/kimi-k2-instruct"  # non-reasoning, plus fiable que gpt-oss-120b qui vide parfois "content"
 
 # Nombre d'histoires à générer à chaque exécution
 NB_HISTOIRES = 5
